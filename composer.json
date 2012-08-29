@@ -11,5 +11,8 @@
     "leafo/lessphp": "v0.3.8",
     "dz0ny/jade.php": "dev-master",
     "mthaml/mthaml": "1.0.1"
+  },
+  "autoload": {
+    "psr-0": {"Tailor": "lib/"}
   }
 }
