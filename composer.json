@@ -10,7 +10,8 @@
     "dflydev/markdown": "v1.0.2",
     "leafo/lessphp": "v0.3.8",
     "dz0ny/jade.php": "dev-master",
-    "mthaml/mthaml": "1.0.1"
+    "mthaml/mthaml": "1.0.1",
+    "leafo/scssphp": "v0.0.3"
   },
   "autoload": {
     "psr-0": {"Tailor": "lib/"}
