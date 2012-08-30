@@ -47,12 +47,7 @@ class Base
     if ( ! is_file($cache_file)) {
       file_put_contents($cache_file, static::compile($path));
     }
-
-    if (is_file($cache_file)) {
-      return file_get_contents($cache_file);
-    }
-
-    // TODO: raise exception
+    return $cache_file;
   }
 
   public static function compile($view) {
