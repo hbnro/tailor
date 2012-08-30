@@ -77,6 +77,15 @@ class Base
     return $output;
   }
 
+  public static function render($view, array $vars = array()) {
+    return call_user_func(function () {
+      ob_start();
+      extract(func_get_arg(1));
+      require func_get_arg(0);
+      return ob_get_clean();
+    }, $view, $vars);
+  }
+
   public static function parse($type, $context, $filename = FALSE) {
     if ( ! isset(static::$handlers[$type])) {
       return; // TODO: raise exception
