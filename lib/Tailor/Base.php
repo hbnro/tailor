@@ -30,8 +30,8 @@ class Base
     }
   }
 
-  public static function partial($path, array $vars = array()) {
-    if ( ! is_file($path = Helpers::resolve($path, 'views_dir'))) {
+  public static function partial($path, $from = 'views_dir') {
+    if ( ! is_file($path = Helpers::resolve($path, $from))) {
       return; // TODO: raise exception?
     }
 
