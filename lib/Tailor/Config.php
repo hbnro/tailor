@@ -25,8 +25,8 @@ class Config
     static::$bag[$key] = $value;
   }
 
-  public static function get($key) {
-    return static::$bag[$key];
+  public static function get($key, $default = FALSE) {
+    return isset(static::$bag[$key]) ? static::$bag[$key] : $default;
   }
 
 }
