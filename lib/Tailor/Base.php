@@ -35,19 +35,22 @@ class Base
       return; // TODO: raise exception?
     }
 
-    $cache_dir  = Config::get('cache_dir');
-    $cache_file = $cache_dir.DIRECTORY_SEPARATOR.md5_file($path);
+    if (substr_count($path, '.') > 1) {
+      $cache_dir  = Config::get('cache_dir');
+      $cache_file = $cache_dir.DIRECTORY_SEPARATOR.md5_file($path);
 
-    if (is_file($cache_file)) {
-      if (filemtime($path) > filemtime($cache_file)) {
-        @unlink($cache_file);
+      if (is_file($cache_file)) {
+        if (filemtime($path) > filemtime($cache_file)) {
+          @unlink($cache_file);
+        }
       }
-    }
 
-    if ( ! is_file($cache_file)) {
-      file_put_contents($cache_file, static::compile($path));
+      if ( ! is_file($cache_file)) {
+        file_put_contents($cache_file, static::compile($path));
+      }
+      return $cache_file;
     }
-    return $cache_file;
+    return $path;
   }
 
   public static function compile($view) {
