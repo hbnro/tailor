@@ -8,7 +8,7 @@ class Php
   private $source = '';
   private $filename = FALSE;
 
-  public static $exts = array('php');
+  public static $exts = array('php', 'phtml');
 
 
 
