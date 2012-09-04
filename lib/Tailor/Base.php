@@ -12,6 +12,7 @@ class Base
                     'less' => '\\Tailor\\Engine\\Less',
                     'haml' => '\\Tailor\\Engine\\Haml',
                     'scss' => '\\Tailor\\Engine\\Scss',
+                    'neddle' => '\\Tailor\\Engine\\Neddle',
                     'markdown' => '\\Tailor\\Engine\\Markdown',
                     'coffeescript' => '\\Tailor\\Engine\\CoffeeScript',
                   );
