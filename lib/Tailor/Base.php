@@ -32,26 +32,26 @@ class Base
   }
 
   public static function partial($path, $from = 'views_dir') {
-    if ( ! is_file($path = Helpers::resolve($path, $from))) {
+    if ( ! is_file($dir = Helpers::resolve($path, $from))) {
       return; // TODO: raise exception?
     }
 
-    if (substr_count($path, '.') > 1) {
+    if (substr_count($dir, '.') > 1) {
       $cache_dir  = Config::get('cache_dir');
-      $cache_file = $cache_dir.DIRECTORY_SEPARATOR.md5_file($path);
+      $cache_file = $cache_dir.DIRECTORY_SEPARATOR.strtr($path, '\\/', '__');
 
       if (is_file($cache_file)) {
-        if (filemtime($path) > filemtime($cache_file)) {
+        if (filemtime($dir) > filemtime($cache_file)) {
           @unlink($cache_file);
         }
       }
 
       if ( ! is_file($cache_file)) {
-        file_put_contents($cache_file, static::compile($path));
+        file_put_contents($cache_file, static::compile($dir));
       }
       return $cache_file;
     }
-    return $path;
+    return $dir;
   }
 
   public static function compile($view) {
