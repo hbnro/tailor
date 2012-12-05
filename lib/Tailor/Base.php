@@ -33,7 +33,7 @@ class Base
 
   public static function partial($path, $from = 'views_dir') {
     if ( ! is_file($dir = Helpers::resolve($path, $from))) {
-      return; // TODO: raise exception?
+      throw new \Exception("Partial '$path' does not exists");
     }
 
     if (substr_count($dir, '.') > 1) {
@@ -56,7 +56,7 @@ class Base
 
   public static function compile($view) {
     if ( ! is_file($view)) {
-      return; // TODO: raise exception
+      throw new \Exception("The file '$view' does not exists");
     }
 
 
@@ -87,7 +87,7 @@ class Base
 
   public static function parse($type, $context, $filename = FALSE) {
     if ( ! isset(static::$handlers[$type])) {
-      return; // TODO: raise exception
+      throw new \Exception("Missing handler for '$type' templates");
     }
 
     $template = static::$handlers[$type];

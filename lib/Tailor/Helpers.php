@@ -13,7 +13,7 @@ class Helpers
   public static function path($for, $on = 'views_dir') {
     if (empty(static::$files["$on#$for"])) {
       if ( ! is_file($tmp = static::resolve($for, $on))) {
-        return; // TODO: raise exception
+        throw new \Exception("The file '$for' does not exists");
       }
       static::$files["$on#$for"] = $tmp;
     }
@@ -32,7 +32,7 @@ class Helpers
       return static::$images[$path];
     }
 
-    // TODO: raise exception
+    throw new \Exception("The image '$path' does not exists");
   }
 
   public static function resolve($path, $on = 'views_dir') {
