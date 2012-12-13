@@ -108,23 +108,27 @@ class Helpers
 
       // TODO: other assets support?
 
-      $image_url = function ($xarg)
-        use ($reduce_str) {
-          @list($type, $delim, $string) = $xarg;
+      $path_for = function ($path, $reduce, $wrapper) {
+          return function ($xarg) use ($path, $reduce, $wrapper) {
+              @list($type, $delim, $string) = $xarg;
 
-          if ($type == 'string') {
-            $file = \Tailor\Helpers::path($reduce_str($string, $reduce_str), 'images_dir');
-            $file = strtr(str_replace(\Tailor\Config::get('images_dir'), \Tailor\Config::get('images_url'), $file), '\\', '/');
+              if ($type == 'string') {
+                $file = \Tailor\Helpers::path($reduce($string, $reduce), $path);
+                $file = strtr(str_replace(\Tailor\Config::get($path), \Tailor\Config::get(str_replace('_dir', '_url', $path)), $file), '\\', '/');
 
-            return "url({$delim}$file{$delim})";
-          }
+                return @sprintf($wrapper, "{$delim}$file{$delim}");
+              }
+            };
         };
+
+      $image_url = $path_for('images_dir', $reduce_str, 'url(%s)');
+      $image_path = $path_for('images_dir', $reduce_str, '%s');
 
       $image_width  = $image_mapper(0, $reduce_str);
       $image_height = $image_mapper(1, $reduce_str);
 
 
-      foreach (array('image_url', 'image_width', 'image_height') as $fn) {
+      foreach (array('image_url', 'image_path', 'image_width', 'image_height') as $fn) {
         $helper   = $$fn;
         $callback = function ($xarg)
           use ($helper, $normalize_args) {
