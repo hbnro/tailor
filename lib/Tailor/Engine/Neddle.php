@@ -12,16 +12,19 @@ class Neddle
 
 
 
-  public function __construct($source, $filename = FALSE) {
+  public function __construct($source, $filename = FALSE)
+  {
     $this->source   = $source;
     $this->filename = $filename;
   }
 
-  public function render() {
+  public function render()
+  {
     return static::parse($this->source, $this->filename);
   }
 
-  public static function parse($text, $filename = 'unknown') {
+  public static function parse($text, $filename = 'unknown')
+  {
     return \Neddle\Parser::render($text);
   }
 

@@ -19,25 +19,28 @@ class Base
 
 
 
-  public static function initialize() {
+  public static function initialize()
+  {
     foreach (static::$templates as $type => $class) {
       static::register($class::$exts, $class);
     }
   }
 
-  public static function register($exts, $klass) {
+  public static function register($exts, $klass)
+  {
     foreach ((array) $exts as $one) {
       static::$handlers[$one] = $klass;
     }
   }
 
-  public static function partial($path, $from = 'views_dir') {
-    if ( ! is_file($dir = Helpers::resolve($path, $from))) {
+  public static function partial($path, $from = 'views_dir')
+  {
+    if ( ! is_file($dir = \Tailor\Helpers::resolve($path, $from))) {
       throw new \Exception("Partial '$path' does not exists");
     }
 
     if (substr_count($dir, '.') > 1) {
-      $cache_dir  = Config::get('cache_dir');
+      $cache_dir  = \Tailor\Config::get('cache_dir');
       $cache_file = $cache_dir.DIRECTORY_SEPARATOR.strtr($path, '\\/', '__');
 
       if (is_file($cache_file)) {
@@ -54,7 +57,8 @@ class Base
     return $dir;
   }
 
-  public static function compile($view) {
+  public static function compile($view)
+  {
     if ( ! is_file($view)) {
       throw new \Exception("The file '$view' does not exists");
     }
@@ -76,7 +80,12 @@ class Base
     return $output;
   }
 
-  public static function render($view, array $vars = array()) {
+  public static function render($view, array $vars = array())
+  {
+    if ( ! is_file($view)) {
+      throw new \Exception("The file '$view' does not exists");
+    }
+
     return call_user_func(function () {
       ob_start();
       extract(func_get_arg(1));
@@ -85,14 +94,15 @@ class Base
     }, $view, $vars);
   }
 
-  public static function parse($type, $context, $filename = FALSE) {
+  public static function parse($type, $context, $filename = FALSE)
+  {
     if ( ! isset(static::$handlers[$type])) {
       throw new \Exception("Missing handler for '$type' templates");
     }
 
     $template = static::$handlers[$type];
     $handler  = new $template($context, $filename);
-    $view     = new Template($handler);
+    $view     = new \Tailor\Template($handler);
 
     return $view->render();
   }

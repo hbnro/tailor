@@ -9,11 +9,13 @@ class Template
 
 
 
-  public function __construct($engine) {
+  public function __construct($engine)
+  {
     $this->engine = $engine;
   }
 
-  public function render() {
+  public function render()
+  {
     try {
       return $this->engine->render();
     } catch (\Exception $e) {

@@ -10,7 +10,8 @@ class Helpers
 
 
 
-  public static function path($for, $on = 'views_dir') {
+  public static function path($for, $on = 'views_dir')
+  {
     if (empty(static::$files["$on#$for"])) {
       if ( ! is_file($tmp = static::resolve($for, $on))) {
         throw new \Exception("The file '$for' does not exists");
@@ -20,7 +21,8 @@ class Helpers
     return static::$files["$on#$for"];
   }
 
-  public static function image($path) {
+  public static function image($path)
+  {
     if ($test = static::path($path, 'images_dir')) {
       if (empty(static::$images[$path])) {
         static::$images[$path] = array(
@@ -35,8 +37,9 @@ class Helpers
     throw new \Exception("The image '$path' does not exists");
   }
 
-  public static function resolve($path, $on = 'views_dir') {
-    $root = Config::get($on);
+  public static function resolve($path, $on = 'views_dir')
+  {
+    $root = \Tailor\Config::get($on);
 
     $path = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $path);
     $path = preg_replace('/^\.' . preg_quote(DIRECTORY_SEPARATOR, '/') . '/', $root, $path);
@@ -52,7 +55,8 @@ class Helpers
     return $path;
   }
 
-  public static function findfile($path, $index = -1) {
+  public static function findfile($path, $index = -1)
+  {
     $set = glob($path, GLOB_MARK | GLOB_BRACE);
 
     if ($index <> -1) {
@@ -61,7 +65,8 @@ class Helpers
     return $set;
   }
 
-  public static function functions() {
+  public static function functions()
+  {
     static $map = NULL;
 
 

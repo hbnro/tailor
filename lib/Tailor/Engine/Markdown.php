@@ -14,23 +14,27 @@ class Markdown
 
 
 
-  public function __construct($source, $filename = FALSE) {
+  public function __construct($source, $filename = FALSE)
+  {
     $this->source   = $source;
     $this->filename = $filename;
   }
 
-  public function render() {
+  public function render()
+  {
     return static::parse($this->source, $this->filename);
   }
 
-  public static function parse($text, $filename = 'unknown') {
+  public static function parse($text, $filename = 'unknown')
+  {
     return static::instance()->transformMarkdown($text);
   }
 
 
 
-  private static function instance() {
-    if (is_null(static::$obj)) {
+  private static function instance()
+  {
+    if (static::$obj === NULL) {
       static::$obj = new \dflydev\markdown\MarkdownExtraParser;
     }
     return static::$obj;

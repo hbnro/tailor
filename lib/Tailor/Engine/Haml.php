@@ -30,7 +30,7 @@ class Haml
 
 
   private static function instance() {
-    if (is_null(static::$obj)) {
+    if (static::$obj === NULL) {
       static::$obj = new \MtHaml\Environment('php');
     }
     return static::$obj;
