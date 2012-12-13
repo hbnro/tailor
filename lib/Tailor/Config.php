@@ -10,10 +10,12 @@ class Config
                     'cache_dir' => './tmp',
                     // files
                     'views_dir' => './views',
+                    'fonts_dir' => './fonts',
                     'images_dir' => './images',
                     'styles_dir' => './styles',
                     'scripts_dir' => './scripts',
                     // urls
+                    'fonts_url' => '/font',
                     'images_url' => '/img',
                     'styles_url' => '/css',
                     'scripts_url' => '/js',

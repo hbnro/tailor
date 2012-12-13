@@ -8,6 +8,23 @@ class Helpers
   private static $files = array();
   private static $images = array();
 
+  private static $allowed = array(
+                    'fonts_dir' => array('eot', 'woff', 'otf', 'ttf', 'svg'),
+                    'images_dir' => array('jpeg', 'jpg', 'png', 'gif'),
+                  );
+
+  private static $mime_types = array(
+                    'eot' => 'application/vnd.ms-fontobject',
+                    'woff' => 'application/x-woff',
+                    'otf' => 'application/octet-stream',
+                    'ttf' => 'application/octet-stream',
+                    'svg' => 'image/svg+xml',
+                    'jpeg' => 'image/jpeg',
+                    'jpg' => 'image/jpeg',
+                    'png' => 'image/png',
+                    'gif' => 'image/gif',
+                  );
+
 
 
   public static function path($for, $on = 'views_dir')
@@ -111,36 +128,47 @@ class Helpers
         };
 
 
-      // TODO: other assets support?
-
-      $path_for = function ($path, $reduce, $wrapper) {
-          return function ($xarg) use ($path, $reduce, $wrapper) {
+      $path_for = function ($reduce, $wrapper, $allowed) {
+          return function ($xarg) use ($reduce, $wrapper, $allowed) {
               @list($type, $delim, $string) = $xarg;
 
               if ($type == 'string') {
-                $file = \Tailor\Helpers::path($reduce($string, $reduce), $path);
-                $file = strtr(str_replace(\Tailor\Config::get($path), \Tailor\Config::get(str_replace('_dir', '_url', $path)), $file), '\\', '/');
+                $tmp = $reduce($string, $reduce);
+                $ext = substr($tmp, strrpos($tmp, '.') + 1);
 
-                return @sprintf($wrapper, "{$delim}$file{$delim}");
+                foreach ($allowed as $path => $set) {
+                  if (in_array($ext, $set)) {
+                    break;
+                  }
+                }
+
+                $file = \Tailor\Helpers::path($tmp, $path);
+                $test = strtr(str_replace(\Tailor\Config::get($path), \Tailor\Config::get(str_replace('_dir', '_url', $path)), $file), '\\', '/');
+
+                return @sprintf(strtr($wrapper instanceof \Closure ? $wrapper($ext, $path, $file, $delim) : $wrapper, ' ', $delim), $test);
               }
             };
         };
 
-      $image_url = $path_for('images_dir', $reduce_str, 'url(%s)');
-      $image_path = $path_for('images_dir', $reduce_str, '%s');
+      $fn['asset_url'] = $path_for($reduce_str, 'url( %s )', static::$allowed);
+      $fn['asset_path'] = $path_for($reduce_str, '%s', static::$allowed);
 
-      $image_width  = $image_mapper(0, $reduce_str);
-      $image_height = $image_mapper(1, $reduce_str);
+      $set = static::$mime_types;
+      $fn['asset_data_uri'] = $path_for($reduce_str, function ($ext, $path, $file, $delim)
+        use ($set) {
+          return sprintf('data:%s;base64,%s', $set[$ext], base64_encode(file_get_contents($file)));
+        }, static::$allowed);
 
+      $fn['image_width']  = $image_mapper(0, $reduce_str);
+      $fn['image_height'] = $image_mapper(1, $reduce_str);
 
-      foreach (array('image_url', 'image_path', 'image_width', 'image_height') as $fn) {
-        $helper   = $$fn;
+      foreach ($fn as $name => $helper) {
         $callback = function ($xarg)
           use ($helper, $normalize_args) {
             return call_user_func_array($helper, $normalize_args($xarg));
           };
 
-        $map[strtr($fn, '_', '-')] = $callback;
+        $map[strtr($name, '_', '-')] = $callback;
       }
     }
 
