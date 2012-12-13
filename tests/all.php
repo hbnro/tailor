@@ -22,7 +22,6 @@ Tailor\Config::set('styles_url', '/static/css');
 Tailor\Config::set('scripts_url', '/static/js');
 
 
-
 foreach (Tailor\Base::$templates as $type => $class) {
   $parts = explode('\\', $class);
   $exts  = $class::$exts;

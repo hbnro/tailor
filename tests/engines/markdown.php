@@ -25,7 +25,7 @@ $expect = '<h2>Main title</h2>
 <p><a href="http://github.com/">Github</a></p>';
 
 $view = Tailor\Base::partial('sample.html');
-$test = trim($view);
+$test = trim(Tailor\Base::render($view));
 
 echo "\nPARTIAL-TEST: ";
 echo $expect === $test ? 'OK' : 'FAIL';

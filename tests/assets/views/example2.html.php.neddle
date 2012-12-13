@@ -1,0 +1,10 @@
+html
+  head
+    title = phpversion()
+  body
+    h1 OK
+    #container
+      - if 0
+        p candy
+      - else
+        p bar

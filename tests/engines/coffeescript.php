@@ -27,7 +27,7 @@ $expect = '(function($) {
 })(jQuery);';
 
 $view = Tailor\Base::partial('../scripts/script.js');
-$test = $clear($view);
+$test = $clear(Tailor\Base::render($view));
 
 echo "\nPARTIAL-TEST: ";
 echo $expect === $test ? 'OK' : 'FAIL';

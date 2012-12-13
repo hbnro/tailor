@@ -35,7 +35,7 @@ $expect = '.x:after {
   content: "' . phpversion() . '"; }';
 
 $view = Tailor\Base::partial('../styles/stylescss.css');
-$test = $clear($view);
+$test = $clear(Tailor\Base::render($view));
 
 echo "\nPARTIAL-TEST: ";
 echo $expect === $test ? 'OK' : 'FAIL';
