@@ -12,6 +12,7 @@ class Base
                     'less' => '\\Tailor\\Engine\\Less',
                     'haml' => '\\Tailor\\Engine\\Haml',
                     'scss' => '\\Tailor\\Engine\\Scss',
+                    'puke' => '\\Tailor\\Engine\\Puke',
                     'neddle' => '\\Tailor\\Engine\\Neddle',
                     'markdown' => '\\Tailor\\Engine\\Markdown',
                     'coffeescript' => '\\Tailor\\Engine\\CoffeeScript',
@@ -89,7 +90,13 @@ class Base
     return call_user_func(function () {
       ob_start();
       extract(func_get_arg(1));
-      require func_get_arg(0);
+
+      $_ = require func_get_arg(0);
+
+      if ($_ instanceof \Closure) {
+        echo $_(get_defined_vars());
+      }
+
       return ob_get_clean();
     }, $view, $vars);
   }
