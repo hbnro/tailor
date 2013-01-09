@@ -54,8 +54,21 @@ class Helpers
     throw new \Exception("The image '$path' does not exists");
   }
 
+  public static function cached($path)
+  {
+    $cache_dir  = \Tailor\Config::get('cache_dir');
+    $cache_file = $cache_dir.DIRECTORY_SEPARATOR.strtr($path, '\\/', '__');
+
+    return $cache_file;
+  }
+
   public static function resolve($path, $on = 'views_dir')
   {
+    if (is_file($tmp_file = static::cached($path))) {
+      return $tmp_file;
+    }
+
+
     $root = \Tailor\Config::get($on);
 
     $path = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $path);

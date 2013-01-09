@@ -36,26 +36,26 @@ class Base
 
   public static function partial($path, $from = 'views_dir')
   {
-    if ( ! is_file($dir = \Tailor\Helpers::resolve($path, $from))) {
+    $tmp_file = \Tailor\Helpers::resolve($path, $from);
+    $cache_file = \Tailor\Helpers::cached($path);
+
+    if ( ! is_file($tmp_file)) {
       throw new \Exception("Partial '$path' does not exists");
     }
 
-    if (substr_count($dir, '.') > 1) {
-      $cache_dir  = \Tailor\Config::get('cache_dir');
-      $cache_file = $cache_dir.DIRECTORY_SEPARATOR.strtr($path, '\\/', '__');
-
+    if (($tmp_file <> $cache_file) && (substr_count($tmp_file, '.') > 1)) {
       if (is_file($cache_file)) {
-        if (filemtime($dir) > filemtime($cache_file)) {
+        if (filemtime($tmp_file) > filemtime($cache_file)) {
           @unlink($cache_file);
         }
       }
 
       if ( ! is_file($cache_file)) {
-        file_put_contents($cache_file, static::compile($dir));
+        file_put_contents($cache_file, static::compile($tmp_file));
       }
       return $cache_file;
     }
-    return $dir;
+    return $tmp_file;
   }
 
   public static function compile($view)
