@@ -64,11 +64,6 @@ class Helpers
 
   public static function resolve($path, $on = 'views_dir')
   {
-    if (is_file($tmp_file = static::cached($path))) {
-      return $tmp_file;
-    }
-
-
     $root = \Tailor\Config::get($on);
 
     $path = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $path);
