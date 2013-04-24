@@ -1,4 +1,4 @@
 ;(($)->
   $ ->
-    console.log "<?php echo phpversion(); ?>"
+    console.log "<?php echo (float) phpversion(); ?>"
 )(jQuery)

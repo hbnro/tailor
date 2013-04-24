@@ -22,7 +22,7 @@ echo $expect === $test ? 'OK' : 'FAIL';
 
 $expect = '(function($) {
   return $(function() {
-    return console.log("' . phpversion() . '");
+    return console.log("' . (float) phpversion() . '");
   });
 })(jQuery);';
 

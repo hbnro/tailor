@@ -38,7 +38,7 @@ echo $expect === $test ? 'OK' : 'FAIL';
 
 
 $expect = '.x:after {
-  content: "' . phpversion() . '"; }';
+  content: "' . (float) phpversion() . '"; }';
 
 $view = Tailor\Base::partial('../styles/stylescss.css');
 $test = $clear(Tailor\Base::render($view));
