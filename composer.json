@@ -7,12 +7,13 @@
   "require": {
     "php": ">=5.3",
     "habanero/puke": "v0.2",
-    "habanero/neddle": "v0.2.3",
+    "habanero/neddle": "v0.2.4",
     "coffeescript/coffeescript": "v1.3.1",
     "dflydev/markdown": "v1.0.2",
-    "leafo/lessphp": "v0.3.8",
-    "mthaml/mthaml": "v1.1.1",
-    "leafo/scssphp": "v0.0.4"
+    "leafo/lessphp": "v0.3.9",
+    "mthaml/mthaml": "v1.2.2",
+    "leafo/scssphp": "v0.0.5",
+    "twig/twig": "v1.12.3"
   },
   "autoload": {
     "psr-0": {"Tailor": "lib/"}
