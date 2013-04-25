@@ -3,7 +3,7 @@ What's Tailor?
 
 Provides a common templating interface for partial rendering.
 
-It comes with support for CoffeeScript, HAML, SCSS, LESS and Markdown out of the box. Written using Composer standards, PSR-friendly.
+It comes with support for Twig, CoffeeScript, HAML, SCSS, LESS and Markdown out of the box. Written using Composer standards, PSR-friendly.
 
 
 ## Using the composer
