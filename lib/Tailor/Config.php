@@ -21,8 +21,6 @@ class Config
                     'scripts_url' => '/js',
                   );
 
-
-
   public static function set($key, $value = NULL)
   {
     static::$bag[$key] = $value;

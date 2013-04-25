@@ -10,8 +10,6 @@ class Php
 
   public static $exts = array('php', 'phtml');
 
-
-
   public function __construct($source, $filename = FALSE)
   {
     $this->source   = $source;
@@ -27,6 +25,7 @@ class Php
   {
     ob_start(); // TODO: this could be better?
     eval('; ?' . ">$text");
+
     return ob_get_clean();
   }
 

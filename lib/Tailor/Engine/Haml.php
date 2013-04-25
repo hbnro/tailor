@@ -12,27 +12,28 @@ class Haml
 
   public static $exts = array('haml');
 
-
-
-  public function __construct($source, $filename = FALSE) {
+  public function __construct($source, $filename = FALSE)
+  {
     $this->source   = $source;
     $this->filename = $filename;
   }
 
-  public function render() {
+  public function render()
+  {
     return static::parse($this->source, $this->filename);
   }
 
-  public static function parse($text, $filename = 'unknown') {
+  public static function parse($text, $filename = 'unknown')
+  {
     return static::instance()->compileString($text, $filename);
   }
 
-
-
-  private static function instance() {
+  private static function instance()
+  {
     if (static::$obj === NULL) {
       static::$obj = new \MtHaml\Environment('php');
     }
+
     return static::$obj;
   }
 

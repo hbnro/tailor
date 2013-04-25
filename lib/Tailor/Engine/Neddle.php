@@ -10,8 +10,6 @@ class Neddle
 
   public static $exts = array('nd', 'ndl', 'ned', 'nedl', 'neddle');
 
-
-
   public function __construct($source, $filename = FALSE)
   {
     $this->source   = $source;

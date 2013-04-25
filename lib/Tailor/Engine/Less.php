@@ -12,8 +12,6 @@ class Less
 
   public static $exts = array('less');
 
-
-
   public function __construct($source, $filename = FALSE)
   {
     $this->source   = $source;
@@ -35,8 +33,6 @@ class Less
     return $out;
   }
 
-
-
   private static function instance()
   {
     if (static::$obj === NULL) {
@@ -50,6 +46,7 @@ class Less
         static::$obj->registerFunction($name, $fn);
       }
     }
+
     return static::$obj;
   }
 

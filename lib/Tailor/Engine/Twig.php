@@ -12,18 +12,19 @@ class Twig
 
   public static $exts = array('twig', 'twg');
 
-
-
-  public function __construct($source, $filename = FALSE) {
+  public function __construct($source, $filename = FALSE)
+  {
     $this->source   = $source;
     $this->filename = $filename;
   }
 
-  public function render() {
+  public function render()
+  {
     return static::parse($this->source, $this->filename);
   }
 
-  public static function parse($text, $filename = 'unknown') {
+  public static function parse($text, $filename = 'unknown')
+  {
     $text = static::instance()->compileSource($text, $text);
 
     preg_match('/\bclass\s+(__TwigTemplate_\S+)/', $text, $match);
@@ -34,11 +35,13 @@ class Twig
     return $text;
   }
 
-  public static function instance() {
+  public static function instance()
+  {
     if (static::$obj === NULL) {
       $loader = new \Twig_Loader_String();
       static::$obj = new \Twig_Environment($loader);
     }
+
     return static::$obj;
   }
 

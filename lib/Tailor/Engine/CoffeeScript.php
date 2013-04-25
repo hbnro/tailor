@@ -10,8 +10,6 @@ class CoffeeScript
 
   public static $exts = array('coffee');
 
-
-
   public function __construct($source, $filename = FALSE)
   {
     $this->source   = $source;
@@ -37,6 +35,7 @@ class CoffeeScript
     if (isset($e)) {
       return $e->getMessage();
     }
+
     return $out;
   }
 

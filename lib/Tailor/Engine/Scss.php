@@ -12,8 +12,6 @@ class Scss
 
   public static $exts = array('scss');
 
-
-
   public function __construct($source, $filename = FALSE)
   {
     $this->source   = $source;
@@ -35,8 +33,6 @@ class Scss
     return $out;
   }
 
-
-
   private static function instance()
   {
     if (static::$obj === NULL) {
@@ -50,6 +46,7 @@ class Scss
         static::$obj->registerFunction($name, $fn);
       }
     }
+
     return static::$obj;
   }
 

@@ -7,8 +7,6 @@ class Template
 
   private $engine = NULL;
 
-
-
   public function __construct($engine)
   {
     $this->engine = $engine;

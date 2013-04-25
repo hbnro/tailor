@@ -19,8 +19,6 @@ class Base
                     'coffeescript' => '\\Tailor\\Engine\\CoffeeScript',
                   );
 
-
-
   public static function initialize()
   {
     foreach (static::$templates as $type => $class) {
@@ -54,8 +52,10 @@ class Base
       if ( ! is_file($cache_file)) {
         file_put_contents($cache_file, static::compile($tmp_file));
       }
+
       return $cache_file;
     }
+
     return $tmp_file;
   }
 
@@ -64,7 +64,6 @@ class Base
     if ( ! is_file($view)) {
       throw new \Exception("The file '$view' does not exists");
     }
-
 
     $output = file_get_contents($view);
     $parts  = explode('.', basename($view));

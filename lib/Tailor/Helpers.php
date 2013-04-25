@@ -5,6 +5,7 @@ namespace Tailor;
 class Helpers
 {
 
+  private static $map = array();
   private static $files = array();
   private static $images = array();
 
@@ -25,8 +26,6 @@ class Helpers
                     'gif' => 'image/gif',
                   );
 
-
-
   public static function path($for, $on = 'views_dir')
   {
     if (empty(static::$files["$on#$for"])) {
@@ -35,6 +34,7 @@ class Helpers
       }
       static::$files["$on#$for"] = $tmp;
     }
+
     return static::$files["$on#$for"];
   }
 
@@ -48,6 +48,7 @@ class Helpers
           'file' => $test,
         );
       }
+
       return static::$images[$path];
     }
 
@@ -87,15 +88,13 @@ class Helpers
     if ($index <> -1) {
       return isset($set[$index]) ? $set[$index] : FALSE;
     }
+
     return $set;
   }
 
   public static function functions()
   {
-    static $map = NULL;
-
-
-    if ( ! $map) {
+    if (! static::$map) {
       $reduce_str = function ($val, $re) {
           $out = array();
 
@@ -119,6 +118,7 @@ class Helpers
 
               if ($type == 'string') {
                 $test = \Tailor\Helpers::image($reduce($string, $reduce));
+
                 return array('number', $test['dims'][$key], 'px');
               }
             };
@@ -132,9 +132,9 @@ class Helpers
               return array($array);
             }
           }
+
           return $array;
         };
-
 
       $path_for = function ($reduce, $wrapper, $allowed) {
           return function ($xarg) use ($reduce, $wrapper, $allowed) {
@@ -176,11 +176,11 @@ class Helpers
             return call_user_func_array($helper, $normalize_args($xarg));
           };
 
-        $map[strtr($name, '_', '-')] = $callback;
+        static::$map[strtr($name, '_', '-')] = $callback;
       }
     }
 
-    return $map;
+    return static::$map;
   }
 
 }

@@ -10,8 +10,6 @@ class Puke
 
   public static $exts = array('pk', 'puk', 'puke');
 
-
-
   public function __construct($source, $filename = FALSE)
   {
     $this->source   = $source;
