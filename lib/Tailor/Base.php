@@ -13,6 +13,7 @@ class Base
                     'haml' => '\\Tailor\\Engine\\Haml',
                     'scss' => '\\Tailor\\Engine\\Scss',
                     'puke' => '\\Tailor\\Engine\\Puke',
+                    'twig' => '\\Tailor\\Engine\\Twig',
                     'neddle' => '\\Tailor\\Engine\\Neddle',
                     'markdown' => '\\Tailor\\Engine\\Markdown',
                     'coffeescript' => '\\Tailor\\Engine\\CoffeeScript',
