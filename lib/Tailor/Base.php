@@ -39,6 +39,11 @@ class Base
     $cache_file = \Tailor\Helpers::cached($path);
 
     if ( ! is_file($tmp_file)) {
+      if (is_file($cache_file)) {
+        // TODO: better fallback?
+        return $cache_file;
+      }
+
       throw new \Exception("Partial '$path' does not exists");
     }
 
