@@ -7,7 +7,7 @@
   "require": {
     "php": ">=5.3",
     "habanero/puke": "v0.2",
-    "habanero/neddle": "v0.2.5",
+    "habanero/neddle": "v0.3.1",
     "coffeescript/coffeescript": "v1.3.1",
     "dflydev/markdown": "v1.0.2",
     "leafo/lessphp": "v0.3.9",
