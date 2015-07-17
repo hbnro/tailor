@@ -9,11 +9,12 @@
     "habanero/puke": "v0.2",
     "habanero/neddle": "v0.3.1",
     "coffeescript/coffeescript": "v1.3.1",
-    "dflydev/markdown": "v1.0.2",
     "leafo/lessphp": "v0.3.9",
     "mthaml/mthaml": "v1.2.2",
     "leafo/scssphp": "v0.0.5",
-    "twig/twig": "v1.12.3"
+    "twig/twig": "v1.12.3",
+    "michelf/php-markdown": "^1.5",
+    "habanero/spectre": "^0.2.3"
   },
   "autoload": {
     "psr-0": {"Tailor": "lib/"}
