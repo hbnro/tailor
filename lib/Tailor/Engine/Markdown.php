@@ -25,16 +25,7 @@ class Markdown
 
   public static function parse($text, $filename = 'unknown')
   {
-    return static::instance()->transformMarkdown($text);
-  }
-
-  private static function instance()
-  {
-    if (static::$obj === NULL) {
-      static::$obj = new \dflydev\markdown\MarkdownExtraParser;
-    }
-
-    return static::$obj;
+    return \Michelf\MarkdownExtra::defaultTransform($text);
   }
 
 }
