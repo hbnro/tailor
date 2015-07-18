@@ -10,11 +10,9 @@ class Base
   public static $templates = array(
                     'php' => '\\Tailor\\Engine\\Php',
                     'less' => '\\Tailor\\Engine\\Less',
-                    'haml' => '\\Tailor\\Engine\\Haml',
                     'scss' => '\\Tailor\\Engine\\Scss',
-                    'puke' => '\\Tailor\\Engine\\Puke',
+                    'haml' => '\\Tailor\\Engine\\Haml',
                     'twig' => '\\Tailor\\Engine\\Twig',
-                    'neddle' => '\\Tailor\\Engine\\Neddle',
                     'markdown' => '\\Tailor\\Engine\\Markdown',
                     'coffeescript' => '\\Tailor\\Engine\\CoffeeScript',
                   );
