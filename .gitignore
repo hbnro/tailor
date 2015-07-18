@@ -3,4 +3,4 @@ report.*
 vendor
 coverage
 composer.lock
-tests/assets/cache
+spec/fixtures/.cache
