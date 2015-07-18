@@ -12,4 +12,10 @@ describe('Engines', function() {
 
     expect($view)->toContain('<p><a href="#">Link</a></p>');
   });
+
+  it('should parse Jade', function() {
+    $view = load('jade', 'h1 ok');
+
+    expect($view)->toMatch('|<h1>\s*ok\s*</h1>|');
+  });
 });

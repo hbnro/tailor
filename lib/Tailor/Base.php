@@ -9,6 +9,7 @@ class Base
 
   public static $templates = array(
                     'php' => '\\Tailor\\Engine\\Php',
+                    'jade' => '\\Tailor\\Engine\\Jade',
                     'less' => '\\Tailor\\Engine\\Less',
                     'scss' => '\\Tailor\\Engine\\Scss',
                     'haml' => '\\Tailor\\Engine\\Haml',
