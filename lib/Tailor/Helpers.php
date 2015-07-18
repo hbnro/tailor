@@ -57,8 +57,10 @@ class Helpers
 
   public static function cached($path)
   {
+    $path = strtr(trim($path, '.'), '\\/', '__');
+
     $cache_dir  = \Tailor\Config::get('cache_dir');
-    $cache_file = $cache_dir.DIRECTORY_SEPARATOR.strtr($path, '\\/', '__');
+    $cache_file = $cache_dir.DIRECTORY_SEPARATOR.$path;
 
     return $cache_file;
   }
