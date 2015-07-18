@@ -1,3 +1,6 @@
+.spectre
+report.*
 vendor
+coverage
 composer.lock
 tests/assets/cache
