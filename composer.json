@@ -4,7 +4,7 @@
   "authors": [{
     "name":"Alvaro Cabrera"
   }],
-  "version": "0.1.0",
+  "version": "v0.1.0",
   "require": {
     "php": ">=5.3",
     "habanero/spectre": "v0.2.4",
