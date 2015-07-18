@@ -3,7 +3,7 @@ What's Tailor?
 
 Provides a common templating interface for partial rendering.
 
-It comes with support for Twig, CoffeeScript, HAML, SCSS, LESS and Markdown out of the box. Written using Composer standards, PSR-friendly.
+It comes with support for Twig, CoffeeScript, Jade, HAML, SCSS, LESS and Markdown out of the box. Written using Composer standards, PSR-friendly.
 
 
 ## Using the composer
@@ -28,23 +28,23 @@ You can use Tailor along with your other composer scripts.
     require 'vendor/autoload.php';
 
     # configure before
-    Tailor\Config::set('cache_dir', '/tmp');
-    Tailor\Config::set('views_dir', __DIR__);
+    \Tailor\Config::set('cache_dir', '/tmp');
+    \Tailor\Config::set('views_dir', __DIR__);
 
     # go ahead!
-    Tailor\Base::initialize();
+    \Tailor\Base::initialize();
 
     # raw rendering
     $tpl = '%a{ :href => "#" } Link';
-    $out = Tailor\Base::parse('haml', $tpl);
+    $out = \Tailor\Base::parse('haml', $tpl);
 
     echo $out; // <a href="#">Link</a>
 
 
     # using as helper
     function partial($path, array $vars = array()) {
-      $tpl = Tailor\Base::partial($path);
-      $out = Tailor\Base::render($tpl, $vars);
+      $tpl = \Tailor\Base::partial($path);
+      $out = \Tailor\Base::render($tpl, $vars);
 
       return $out;
     }
