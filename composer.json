@@ -4,19 +4,22 @@
   "authors": [{
     "name":"Alvaro Cabrera"
   }],
+  "version": "0.1.0",
   "require": {
     "php": ">=5.3",
-    "habanero/puke": "v0.2",
-    "habanero/neddle": "v0.3.1",
+    "habanero/spectre": "v0.2.4",
     "coffeescript/coffeescript": "v1.3.1",
     "leafo/lessphp": "v0.3.9",
-    "mthaml/mthaml": "v1.2.2",
     "leafo/scssphp": "v0.0.5",
     "twig/twig": "v1.12.3",
+    "mthaml/mthaml": "v1.2.2",
     "michelf/php-markdown": "^1.5",
-    "habanero/spectre": "^0.2.3"
+    "kylekatarnls/jade-php": "^1.3"
   },
+  "minimum-stability": "dev",
   "autoload": {
-    "psr-0": {"Tailor": "lib/"}
+    "psr-4": {
+      "": "lib"
+    }
   }
 }
