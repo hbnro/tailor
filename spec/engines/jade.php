@@ -14,6 +14,6 @@ describe('Jade', function() {
 
     expect($view)->toContain(phpversion());
     expect($view)->toContain('<!DOCTYPE html>');
-    expect($view)->toContain("<div id='container'>");
+    expect($view)->toContain('<div id="container">');
   });
 });
